@@ -1,0 +1,29 @@
+
+### register
+
+POST http://localhost:5000/api/users/register HTTP/1.1
+content-type: application/json
+
+{
+    "userid": "Sailor",
+    "password": "Hello"
+}
+
+### login
+POST http://localhost:5000/api/users/login HTTP/1.1
+content-type: application/json
+
+{
+    "userid": "Sailor",
+    "password": "Hello"
+}
+
+### update
+PUT http://localhost:5000/api/users/update HTTP/1.1
+content-type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NmJlMDRkNDYwZmRlMWRlMjE5OTYyNyIsImlhdCI6MTcxODM0NTgyOSwiZXhwIjoxNzE4MzQ5NDI5fQ.D2JS-ix5TXBoinZ5lDzOgGCXch-w0giWoD5N36T0COs",
+    "name": "gann",
+    "age": 43
+}
