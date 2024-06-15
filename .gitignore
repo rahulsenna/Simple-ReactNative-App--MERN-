@@ -100,3 +100,4 @@ ios
 
 *lock.json
 *.lock
+.vscode

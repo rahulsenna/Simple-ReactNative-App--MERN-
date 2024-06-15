@@ -1,7 +1,7 @@
 
 ### register
 
-POST http://localhost:5000/api/users/register HTTP/1.1
+POST http://localhost:8000/api/users/register HTTP/1.1
 content-type: application/json
 
 {
@@ -10,7 +10,7 @@ content-type: application/json
 }
 
 ### login
-POST http://localhost:5000/api/users/login HTTP/1.1
+POST http://localhost:8000/api/users/login HTTP/1.1
 content-type: application/json
 
 {
@@ -19,7 +19,7 @@ content-type: application/json
 }
 
 ### update
-PUT http://localhost:5000/api/users/update HTTP/1.1
+PUT http://localhost:8000/api/users/update HTTP/1.1
 content-type: application/json
 
 {

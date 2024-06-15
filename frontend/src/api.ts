@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/users';
+const API_URL = 'http://192.168.1.100:8000/api/users';
 
 interface AuthResponse {
   token: string;

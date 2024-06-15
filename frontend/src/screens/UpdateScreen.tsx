@@ -29,7 +29,7 @@ const UpdateScreen: React.FC<Props> = ({ route }) => {
         setMessage('Please enter a valid age');
       }
     } catch (error: any) {
-      setMessage(error.response.data.error);
+      setMessage(error.response?.data?.error || 'Update failed');
     }
   };
 

@@ -16,6 +16,5 @@ mongoose.connect('mongodb://localhost:27017/userDB', { useNewUrlParser: true, us
 app.use('/api/users', userRoutes);
 
 // Start the server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
+const PORT = process.env.PORT || 8000;
+const server = app.listen(PORT,'0.0.0.0', () => console.log(`Server running on port http://${server.address().address}:${server.address().port}`));

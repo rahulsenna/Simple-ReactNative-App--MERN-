@@ -20,9 +20,12 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
   const handleLogin = async () => {
     try {
       const { token } = await login(userid, password);
-      navigation.navigate('Update', { token });
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'Update', params: { token } }],
+      });
     } catch (error: any) {
-      setMessage(error.response.data.error);
+      setMessage(error.response?.data?.error || 'Login failed');
     }
   };
 
@@ -31,6 +34,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
       <TextInput placeholder="User ID" value={userid} onChangeText={setUserid} />
       <TextInput placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry />
       <Button title="Login" onPress={handleLogin} />
+      <Button  color={'pink'} title="Register" onPress={()=>{navigation.navigate('Register')}} />
       {message ? <Text>{message}</Text> : null}
     </View>);
 };
