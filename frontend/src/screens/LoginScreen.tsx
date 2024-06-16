@@ -1,12 +1,13 @@
 // src/screens/LoginScreen.tsx
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, TextInput, Button, Text } from 'react-native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RouteProp } from '@react-navigation/native';
 import { login } from '../api';
 import { RootStackParamList } from '../types';
+import { AuthContext } from '../../App';
 
-type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
+type LoginScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Login'>;
 
 type Props = {
   navigation: LoginScreenNavigationProp;
@@ -16,14 +17,12 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
   const [userid, setUserid] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const authContext = useContext(AuthContext);
 
   const handleLogin = async () => {
     try {
       const { token } = await login(userid, password);
-      navigation.reset({
-        index: 0,
-        routes: [{ name: 'Update', params: { token } }],
-      });
+      authContext?.signIn({ token });
     } catch (error: any) {
       setMessage(error.response?.data?.error || 'Login failed');
     }

@@ -2,11 +2,11 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Text } from 'react-native';
 import { register } from '../api';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { RootStackParamList } from '../types';
 
-type RegisterScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Register'>;
+type RegisterScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Register'>;
 
 type Props = {
   navigation: RegisterScreenNavigationProp;
@@ -32,7 +32,7 @@ const RegisterScreen: React.FC<Props> = ({ navigation }) => {
       <TextInput placeholder="User ID" value={userid} onChangeText={setUserid} />
       <TextInput placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry />
       <Button title="Register" onPress={handleRegister} />
-      <Button title="Login" onPress={()=>{navigation.navigate('Login')}} />
+      <Button color={'grey'} title="Login" onPress={()=>{navigation.navigate('Login')}} />
       {message ? <Text>{message}</Text> : null}
     </View>
   );
