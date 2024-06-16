@@ -1,5 +1,5 @@
 // src/screens/LoginScreen.tsx
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, TextInput, Button, Text } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RouteProp } from '@react-navigation/native';
@@ -15,20 +15,11 @@ type Props = {
   navigation: LoginScreenNavigationProp;
 };
 
-const LoginScreen: React.FC<Props> = ({ route, navigation }) => {
+const LoginScreen: React.FC<Props> = ({ navigation }) => {
   const [userid, setUserid] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const authContext = useContext(AuthContext);
-
-  useEffect(() => {
-    if (route.params?.userid) {
-      setUserid(route.params.userid);
-    }
-    if (route.params?.password) {
-      setPassword(route.params.password);
-    }
-  }, [route.params]);
 
   const handleLogin = async () => {
     try {
