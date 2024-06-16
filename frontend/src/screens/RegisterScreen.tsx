@@ -22,6 +22,7 @@ const RegisterScreen: React.FC<Props> = ({ navigation }) => {
     try {
       await register(userid, password);
       setMessage('User registered successfully');
+      navigation.navigate('Login', {userid, password});
     } catch (error: any) {
       setMessage(error.response?.data?.error || 'Registration failed');
     }
@@ -32,7 +33,7 @@ const RegisterScreen: React.FC<Props> = ({ navigation }) => {
       <TextInput placeholder="User ID" value={userid} onChangeText={setUserid} />
       <TextInput placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry />
       <Button title="Register" onPress={handleRegister} />
-      <Button color={'grey'} title="Login" onPress={()=>{navigation.navigate('Login')}} />
+      <Button color={'grey'} title="Login" onPress={()=>{navigation.navigate('Login', {userid:userid, password:password})}} />
       {message ? <Text>{message}</Text> : null}
     </View>
   );
