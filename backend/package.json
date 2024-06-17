@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "nodemon server.js --ext js,ts,jsx,ejs",
+		"start": "node server.js",
+		"ui":    "browser-sync start --proxy localhost:3000 --files=**/*  --ignore=node_modules --no-ui --no-open --no-inject-changes"
   },
   "keywords": [],
   "author": "",
@@ -12,8 +14,15 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.4.1"
+  },
+  "devDependencies": {
+    "connect-livereload": "^0.6.1",
+    "dotenv": "^16.0.3",
+    "livereload": "^0.9.3",
+    "nodemon": "^2.0.20"
   }
 }

@@ -5,8 +5,8 @@ POST http://localhost:8000/api/users/register HTTP/1.1
 content-type: application/json
 
 {
-    "userid": "Sailor",
-    "password": "Hello"
+    "userid": "jon",
+    "password": "sailor"
 }
 
 ### login
@@ -14,16 +14,73 @@ POST http://localhost:8000/api/users/login HTTP/1.1
 content-type: application/json
 
 {
-    "userid": "Sailor",
-    "password": "Hello"
+    "userid": "hello",
+    "password": "sailor"
 }
 
 ### update
 PUT http://localhost:8000/api/users/update HTTP/1.1
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NmZkZGFkNjgwNGZhY2MyYWUxNDljMiIsImlhdCI6MTcxODYyOTUxNSwiZXhwIjoxNzE4NjMzMTE1fQ.Pl52ZX4Cjo9Ya_lMkrHa0jPSJsJtGekDxcKWT1rjy7U
 
 {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NmJlMDRkNDYwZmRlMWRlMjE5OTYyNyIsImlhdCI6MTcxODM0NTgyOSwiZXhwIjoxNzE4MzQ5NDI5fQ.D2JS-ix5TXBoinZ5lDzOgGCXch-w0giWoD5N36T0COs",
-    "name": "gann",
-    "age": 43
+    "name": "Jack Sparrow",
+    "age": 46
+}
+
+### post an item
+POST http://localhost:8000/api/items/ HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NmZkZGFkNjgwNGZhY2MyYWUxNDljMiIsImlhdCI6MTcxODYyOTUxNSwiZXhwIjoxNzE4NjMzMTE1fQ.Pl52ZX4Cjo9Ya_lMkrHa0jPSJsJtGekDxcKWT1rjy7U
+
+{
+    "name": "EFERMONE® Efer-7 Polarized Sunglasses For Men and Women",
+    "description": "400nm UV Sunlight Protection with Dual Coat | Impact Resistant polarization Lens",
+    "img_url": "https://m.media-amazon.com/images/I/31n304eO5uL._MCnd_AC_.jpg",
+    "price": 99.43  
+}
+
+
+### post another item
+POST http://localhost:8000/api/items/ HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NmZkZGFkNjgwNGZhY2MyYWUxNDljMiIsImlhdCI6MTcxODYyOTUxNSwiZXhwIjoxNzE4NjMzMTE1fQ.Pl52ZX4Cjo9Ya_lMkrHa0jPSJsJtGekDxcKWT1rjy7U
+
+{
+    "name": "Campus Cristy Women's Running Shoes",
+    "description": "Breathable Mesh Upper and Pillo Foam Outsole | Women's Shoes with Cushioned Memory Foam",
+    "price": 39.35  
+}
+
+
+### list items
+GET http://localhost:8000/api/items HTTP/1.1
+content-type: application/json
+
+### list items while logged in
+GET http://localhost:8000/api/items HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzAzODQxYjhlZWZmNWZkMDE2MDc0ZiIsImlhdCI6MTcxODYzMDQ2OSwiZXhwIjoxNzE4NjM0MDY5fQ.hwDzIo20FNVnsIkFYvVE5_DYD80yUcfgmrDej9Apzq4
+
+### buy an item
+POST http://localhost:8000/api/items/667034ce91a696e970ff5732/buy HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NmZkZGFkNjgwNGZhY2MyYWUxNDljMiIsImlhdCI6MTcxODYyOTUxNSwiZXhwIjoxNzE4NjMzMTE1fQ.Pl52ZX4Cjo9Ya_lMkrHa0jPSJsJtGekDxcKWT1rjy7U
+
+{
+    "name": "Campus Cristy Women's Running Shoes",
+    "description": "Breathable Mesh Upper and Pillo Foam Outsole | Women's Shoes with Cushioned Memory Foam",
+    "price": 39.35  
+}
+
+
+### post another item
+POST http://localhost:8000/api/items/ HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NmZkZGFkNjgwNGZhY2MyYWUxNDljMiIsImlhdCI6MTcxODYzMjI5NSwiZXhwIjoxNzE4NjM1ODk1fQ.p1xyQe4Oh7Q_YfxHIsz_-TJkFRixikH7i65fgPLOjCQ
+
+{
+    "name": "3YaAIR Mustard",
+    "description": "Product details\n Design namePrinted\n Length6 yards\n Occasion typeWedding\n Care instructionsHand Wash Only\n Country of OriginIndia",
+    "price": 479.24  
 }
