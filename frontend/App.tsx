@@ -9,6 +9,7 @@ import LoginScreen from './src/screens/LoginScreen';
 import UpdateScreen from './src/screens/UpdateScreen';
 import { RootStackParamList } from './src/types';
 import { StyleSheet } from 'react-native';
+import ItemsScreen from './src/screens/ItemsScreen';
 
 type AuthContextType = {
   signIn: (data: { token: string }) => void;
@@ -77,11 +78,15 @@ const App: React.FC = () => {
       <Stack.Navigator>
           {state.userToken == null ? (
             <>
+              <Stack.Screen name="Items" component={ItemsScreen} />
               <Stack.Screen name="Login" component={LoginScreen} />
               <Stack.Screen name="Register" component={RegisterScreen} />
             </>
           ) : (
+            <>
+            <Stack.Screen name="Items" component={ItemsScreen} />
             <Stack.Screen name="Update" component={UpdateScreen} />
+            </>
           )}
       </Stack.Navigator>
 
