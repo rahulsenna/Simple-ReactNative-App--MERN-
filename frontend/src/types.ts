@@ -15,5 +15,5 @@ export interface Item {
     userid: string;
     name: string;
   };
-  isSold: boolean;
+  available: boolean;
 }

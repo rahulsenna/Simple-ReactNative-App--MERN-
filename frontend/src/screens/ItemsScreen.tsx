@@ -15,7 +15,7 @@ const ItemsScreen: React.FC<Props> = ({ navigation }) => {
   const [items, setItems] = useState<Item[]>();
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const authContext = useContext(AuthContext);
+  const { isSignout, signOut } = useContext(AuthContext)!;
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -29,7 +29,7 @@ const ItemsScreen: React.FC<Props> = ({ navigation }) => {
     };
 
     fetchItems();
-  }, [page, authContext?.userToken]); // `authContext?.userToken` So react calls _fetchItems()_ when user logs in or out.
+  }, [page, isSignout]); // `isSignout` So react calls _fetchItems()_ when user logs in or out.
 
   const handleNextPage = () => {
     if (page < totalPages) {
@@ -48,9 +48,9 @@ const ItemsScreen: React.FC<Props> = ({ navigation }) => {
 
   return (
     <View>
-      {!authContext?.userToken ? 
+      { isSignout ? 
       (<Button title="Login" onPress={() => navigation.navigate('Login')} />) :
-      (<Button title="Logout" onPress={() => authContext.signOut()} />)
+      (<Button title="Logout" onPress={() => signOut()} />)
       }
       <FlatList
         data={items}

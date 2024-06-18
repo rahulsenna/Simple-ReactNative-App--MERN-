@@ -15,7 +15,7 @@ import { removeAuthToken, setAuthToken } from './src/api';
 type AuthContextType = {
   signIn: (data: { token: string }) => void;
   signOut: () => void;
-  userToken: string | null
+  isSignout: boolean 
 };
 
 export const AuthContext = createContext<AuthContextType | null>(null);
@@ -45,7 +45,7 @@ const App: React.FC = () => {
         console.error(e);
       }
 
-      setState({ isLoading: false, isSignout: false, userToken });
+      setState({ isLoading: false, isSignout: userToken ? false : true, userToken });
     };
 
     bootstrapAsync();
@@ -63,7 +63,7 @@ const App: React.FC = () => {
         setState({ ...state, isSignout: true, userToken: null });
         await removeAuthToken();
       },
-      userToken: state.userToken
+      isSignout: state.isSignout
     }),
     [state]
   );

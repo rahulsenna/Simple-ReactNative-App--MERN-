@@ -18,14 +18,14 @@ const RegisterScreen: React.FC<Props> = ({ navigation }) => {
   const [userid, setUserid] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
-  const authContext = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext)!;
 
   const handleRegister = async () => {
     try {
       await register(userid, password);
       setMessage('User registered successfully');
       const { token } = await login(userid, password);
-      authContext?.signIn({ token });
+      signIn({ token });
     } catch (error: any) {
       setMessage(error.response?.data?.error || 'Registration failed');
     }

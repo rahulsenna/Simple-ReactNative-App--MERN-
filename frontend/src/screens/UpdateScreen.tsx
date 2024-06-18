@@ -16,7 +16,7 @@ type Props = {
 };
 
 const UpdateScreen: React.FC<Props> = ({ route, navigation }) => {
-  const authContext = useContext(AuthContext);
+  const { signOut } = useContext(AuthContext)!;
 
   const [name, setName] = useState('');
   const [age, setAge] = useState<number | undefined>(undefined);
@@ -25,7 +25,7 @@ const UpdateScreen: React.FC<Props> = ({ route, navigation }) => {
   const handleUpdate = async () => {
     try {
       if (age !== undefined) {
-        await updateUser(authContext?.userToken!, name, age);
+        await updateUser(name, age);
         setMessage('User details updated');
       } else {
         setMessage('Please enter a valid age');
@@ -41,7 +41,7 @@ const UpdateScreen: React.FC<Props> = ({ route, navigation }) => {
       <TextInput placeholder="Age" value={age?.toString()} onChangeText={(text) => setAge(Number(text))} keyboardType="numeric" />
       <Button title="Update" onPress={handleUpdate} />
       {message ? <Text>{message}</Text> : null}
-      <Button title="Logout" onPress={authContext?.signOut} />
+      <Button title="Logout" onPress={signOut} />
     </View>
   );
 };
