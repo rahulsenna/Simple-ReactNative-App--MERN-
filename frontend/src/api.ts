@@ -21,14 +21,19 @@ export const login = async (userid: string, password: string): Promise<AuthRespo
   return response.data;
 };
 
-export const updateUser = async (token: string, name: string, age: number): Promise<void> => {
-  axios.defaults.headers.common['Authorization'] = token;
+export const updateUser = async (name: string, age: number): Promise<void> => { 
   await axios.put(`users/update`, { name, age });
 };
 
-export const getItems = async (token: string|null) : Promise<ItemsResponse> =>{
-  if (token)
-    axios.defaults.headers.common['Authorization'] = token;
-  const response = await axios.get('items?page=${page}');
+export const getItems = async (page: number) : Promise<ItemsResponse> =>{
+  const response = await axios.get(`items?page=${page}`);
   return response.data;
+}
+
+export const setAuthToken = async (token: string) : Promise<void> =>{
+  axios.defaults.headers.common['Authorization'] = token;
+}
+
+export const removeAuthToken = async () : Promise<void> =>{
+  axios.defaults.headers.common['Authorization'] = '';
 }

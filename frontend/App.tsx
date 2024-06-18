@@ -10,6 +10,7 @@ import UpdateScreen from './src/screens/UpdateScreen';
 import { RootStackParamList } from './src/types';
 import { StyleSheet } from 'react-native';
 import ItemsScreen from './src/screens/ItemsScreen';
+import { removeAuthToken, setAuthToken } from './src/api';
 
 type AuthContextType = {
   signIn: (data: { token: string }) => void;
@@ -38,6 +39,7 @@ const App: React.FC = () => {
         const credentials = await Keychain.getGenericPassword();
         if (credentials) {
           userToken = credentials.password;
+          await setAuthToken(userToken);
         }
       } catch (e) {
         console.error(e);
@@ -54,10 +56,12 @@ const App: React.FC = () => {
       signIn: async (data: { token: string }) => {
         await Keychain.setGenericPassword('user', data.token);
         setState({ ...state, isSignout: false, userToken: data.token });
+        await setAuthToken(data.token);
       },
       signOut: async () => {
         await Keychain.resetGenericPassword();
         setState({ ...state, isSignout: true, userToken: null });
+        await removeAuthToken();
       },
       userToken: state.userToken
     }),

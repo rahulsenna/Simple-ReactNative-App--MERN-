@@ -20,7 +20,7 @@ const ItemsScreen: React.FC<Props> = ({ navigation }) => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const { items, totalPages } = await getItems(authContext?.userToken!);
+        const { items, totalPages } = await getItems(page);
         setItems(items);
         setTotalPages(totalPages);
       } catch (error) {
@@ -29,7 +29,7 @@ const ItemsScreen: React.FC<Props> = ({ navigation }) => {
     };
 
     fetchItems();
-  }, [page]);
+  }, [page, authContext?.userToken]); // `authContext?.userToken` So react calls _fetchItems()_ when user logs in or out.
 
   const handleNextPage = () => {
     if (page < totalPages) {
