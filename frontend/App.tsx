@@ -1,6 +1,6 @@
 // App.tsx
 import React, { useEffect, useState, createContext, useMemo } from 'react';
-import {DarkTheme, NavigationContainer, NavigationProp} from '@react-navigation/native';
+import {DarkTheme, NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { View, ActivityIndicator } from 'react-native';
 import * as Keychain from 'react-native-keychain';
@@ -8,7 +8,6 @@ import RegisterScreen from './src/screens/RegisterScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import UpdateScreen from './src/screens/UpdateScreen';
 import { RootStackParamList } from './src/types';
-import { StyleSheet } from 'react-native';
 import ItemsScreen from './src/screens/ItemsScreen';
 import { removeAuthToken, setAuthToken } from './src/api';
 
