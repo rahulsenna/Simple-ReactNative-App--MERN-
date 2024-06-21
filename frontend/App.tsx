@@ -1,6 +1,6 @@
 // App.tsx
 import React, { useEffect, useState, createContext, useMemo } from 'react';
-import {DarkTheme, NavigationContainer} from '@react-navigation/native';
+import {DarkTheme, DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { View, ActivityIndicator } from 'react-native';
 import * as Keychain from 'react-native-keychain';
@@ -77,7 +77,7 @@ const App: React.FC = () => {
 
   return (
   <AuthContext.Provider value={authContext}>
-    <NavigationContainer theme={DarkTheme}>
+    <NavigationContainer theme={DefaultTheme}>
       <Stack.Navigator>
           {state.userToken == null ? (
             <>
